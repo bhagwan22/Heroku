@@ -1,0 +1,99 @@
+Getting started guide   :   https://devcenter.heroku.com/start
+
+This tutorial demonstrates the Heroku platform, including Heroku Dashboard, Heroku Button and Heroku Connect. You will deploy an application to the web, view the running application, connect the database of the application to a Salesforce Developer Edition org, sync data, and modify the application to retrieve the data from the database.
+
+The tutorial assumes that you have a free Heroku account and a free Salesforce Developer Edition environment.
+
+In this step, you will deploy a simple application. It’s an application written in the Ruby language, but the specifics of the application don’t matter too much in this tutorial.
+
+We’re going to deploy it using a Heroku Button, which will:
+	Automatically fetch the source code for the application.
+	Deploy the application.
+	Configure external services it uses. In this case, the Heroku Postgres database.
+	Provide it with a domain name so that it’s accessible over the web.
+	Make it available to you.
+	
+	Steps:
+	1. Once created the application --->  "Deploy App"  ---> once finished "view"  // application URl is "applicationName.herokuapp.com/"
+			 It’s a simple step, but it resulted in a real, running application out there on the web, without you having to think about routers and domains and hardware.
+			 NOTE: https://devcenter.heroku.com/articles/getting-started-with-heroku-and-connect-without-local-dev#deploy-the-app
+			 
+	2. Heroku Dashboard: to manage our application we can go to https://dashboard.heroku.com/apps
+		Dashboard provides a user interface for managing sets of applications, and the details of particular applications. 
+		
+	3. HEROKU CONNECT:
+		In this step, you will configure the Heroku Connect add-on, and set up the appropriate authorization with your Salesforce org.
+			select app --> Resources  ---> HEROKU CONNECT ---> Salesforce credential
+		You’ve now authorized Heroku Connect and established a connection between the Salesforce Org and your Heroku Postgres database.
+		
+	4. Mapping and Synchronization:
+		# FOR UNI-DIRECTIONAL SYNC (sf-to-heroku)
+          STEP 3 DONE: ----> mapping ---> "Create Mapping"  ---> Select object ----> select fiels (Some field are auto checked)  --> Save
+		# FOR BI-DIRECTIONAL SYNC (sf-to-heroku  and heroku-to-sf)
+	
+	5. Heroku DataClip:  Dataclips let you easily share the results of SQL queries on a Heroku Postgres database. 
+		Select application --> Resource---> Postgrace(install it) ---> Dataclips ----> create Dataclip  ----> enter name and SQL query
+		
+		SELECT
+		  firstname, lastname, email
+		FROM
+		  salesforce.contact
+		ORDER BY
+		  systemmodstamp DESC;
+		  
+	6. Deploying a change through GitHub --  GitHub is a web-based source code management hosting service and it can be configured to automatically deploy code changes to Heroku.
+			FORK https://github.com/heroku/no-local-dev-getting-started 
+			
+		#	Go to any github FORK THE REPOSOTORY to your github 
+		Heroku --> Application --> Deploy --->  "Connect A GitHub" ---> login to Git --> select the Repo to connect ---> "Enable Automatic Deploy"
+		
+		NOW
+		some chnages to github and save the code ---> AND see Activity tab of application "Build in Process" ---> after some time changes will be reflected in Heroku
+		// THIS WAY WE ACHIEVE CI/CD
+		
+		EASY Roll-BACK from Activity TAB
+		
+		# Showing the SF data in /contacts
+		
+		
+	7. check how many application are running 
+		Your application ---> resource
+		By default, your app is deployed on a free dyno. Free dynos will sleep after a half hour of inactivity (if they don’t receive any traffic). 
+		
+	8. Add-ons  --  3rd party, cloud services that provide out-of-the-box additional services for your application
+					ex: heroku postgrace
+						heroku connect
+					
+					to view your logs you can make use of "Papertrail" because heroku by default stores 1500 lines of logs from your application only.
+	
+	
+	
+	SUMMERIZE:
+		Deploying apps to the web 
+		Explored Heroku Dashboard provides 
+		Dynos and scaling
+		Git
+		Add-ons
+		Heroku connect
+		Postgrace
+		DataClip
+		
+
+
+Thank you
+
+		
+		
+		
+		
+		
+		
+		
+		
+										
+		  
+	
+	
+	
+	
+	
